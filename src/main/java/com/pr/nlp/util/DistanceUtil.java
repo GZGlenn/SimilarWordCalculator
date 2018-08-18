@@ -51,8 +51,9 @@ public class DistanceUtil {
         return Math.sqrt(differenceSum);
     }
 
-    public static <T extends List<Double>> double calCosineSimilarityWithNorm (T data1, T data2) {
-        double similar = 0;
+
+    public static <T extends List<Float>> float calCosineSimilarityWithNorm (T data1, T data2) {
+        float similar = 0;
         for (int i = 0 ; i < Math.min(data1.size(), data2.size()); i++) {
             if (i < data1.size() && i < data2.size()) {
                 similar += data1.get(i) * data2.get(i);

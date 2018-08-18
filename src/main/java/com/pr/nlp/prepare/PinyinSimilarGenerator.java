@@ -15,9 +15,9 @@ import java.util.HashSet;
 
 public class PinyinSimilarGenerator {
 
-    String ngramPath = "";
-    String pinyinPath = "./resources/word_pinyin.txt";
-    String similarPath = "./resources/pinyin_similar.txt";
+    String ngramPath = "/home/glenn/IdeaProjects/wordEmbedding_model/20180803-002633_chinese_vectors.txt";
+    String pinyinPath = "/home/public/code/chinese_spelling/SimilarWordCalculator/src/main/resources/word_pinyin.txt";
+    String similarPath = "/home/public/code/chinese_spelling/SimilarWordCalculator/src/main/resources/pinyin_similar.txt";
     final String seperator = ",";
 
     public boolean isChinese(char c) {
@@ -33,7 +33,7 @@ public class PinyinSimilarGenerator {
         HashMap<String, HashSet<String>> word2Pinyin = new HashMap<>();
         ArrayList<String> lines = FileUtil.readFileByLine(ngramPath);
         for (String line: lines) {
-            String words = line.split("\t")[0];
+            String words = line.split(" ")[0];
             char[] chars = words.toCharArray();
             for (char c : chars) {
                 if (isChinese(c)) {
@@ -59,6 +59,7 @@ public class PinyinSimilarGenerator {
     }
 
     public void saveWord2PinyinData(HashMap<String, HashSet<String>> word2Pinyin) {
+        System.out.println(this.getClass().getResource(".").getPath());
         FileUtil.deleteFile(pinyinPath);
         FileWriter fw = FileUtil.createFileWriter(pinyinPath);
         for (HashMap.Entry<String, HashSet<String>> entry : word2Pinyin.entrySet()) {
